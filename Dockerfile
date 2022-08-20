@@ -7,9 +7,10 @@ RUN apt-get install -y cmake
 RUN apt-get install -y  libssl-dev
 WORKDIR /black-scholes-model
 
+EXPOSE 34566
+
 COPY . .
 RUN cmake  .
 RUN cmake  --build  . 
-RUN chmod 777 app
 
-ENTRYPOINT ./app
+CMD ./app $PORT

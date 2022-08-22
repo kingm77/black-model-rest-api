@@ -24,7 +24,7 @@ namespace str {
 	};
 
 	namespace app {
-		const static std::string BASE_URL = "http://0.0.0.0:";
+		const static std::string BASE_URL = "http://localhost:";
 		const static std::string PORT = "34566";
 	}
 }

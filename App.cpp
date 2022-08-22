@@ -1,5 +1,7 @@
 #include "App.h"
 
+#include <iostream>
+
 // routes handler
 #include "FunctionHandler.h"
 #include "RouteHandler.h"
@@ -9,6 +11,8 @@
 
 // black-scholes controller
 #include "BlackScholesHandler.h"
+
+#include <cpprest/uri.h>
 
 #include "strConstant.h"
 
@@ -24,6 +28,7 @@ void app::StartServer(const utility::string_t& address)
 	// We just append VanillaPricer/ to the base URL
 	web::uri_builder uri(address);
 	uri.append_path(utility::conversions::to_string_t(str::route::BASE_ROUTE));
+	ucout << uri.to_uri().to_string() << std::endl;
 	auto addr = uri.to_uri().to_string();
 	/////////////////////////////////
 	// Create an Instance of the Server and Invoke Wait to 

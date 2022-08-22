@@ -1,0 +1,16 @@
+version: '3.0'
+services:
+  api:
+    restart: on-failure
+    build: ./src
+    environment:
+        - PORT=34566
+        
+    ports:
+      - '81:34566'
+  nginx:
+    build: ./nginx
+    ports:
+    - '5000:80'
+    depends_on:
+    - api

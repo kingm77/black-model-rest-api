@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.9)
 project(black)
 
+
 find_package(cpprestsdk REQUIRED)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set_target_properties(cpprestsdk::cpprestsdk_openssl_internal PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "CPPREST_NO_SSL_LEAK_SUPPRESS"

@@ -4,7 +4,6 @@
 #include "cpprest/uri.h"
 #include "cpprest/asyncrt_utils.h"
 #include <map>
-#include <iostream>
 
 
 //////////////////////////////////
@@ -19,7 +18,6 @@ PricingServer::PricingServer(utility::string_t url, Router rtr) : m_listener(url
 
 void PricingServer::HandleGet(web::http::http_request message)
 {
-	std::cout << "i am here" << std::endl;
 	router.handle(message, utility::conversions::to_utf8string(message.absolute_uri().path()),  "get");
 };
 

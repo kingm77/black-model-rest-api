@@ -9,7 +9,7 @@
 //////////////////////////////////
 // The Constructor Binds HTTP verbs to instance methods
 // Based on the naming convention, we can infer what is happening
-PricingServer::PricingServer(utility::string_t url, Router rtr) : m_listener(url)
+PricingServer::PricingServer(utility::string_t url, Router rtr, utility::seconds timeout) : m_listener(url)
 {
 	m_listener.support(web::http::methods::GET, std::bind(&PricingServer::HandleGet, this, std::placeholders::_1));
 	m_listener.support(web::http::methods::POST, std::bind(&PricingServer::HandlePost, this, std::placeholders::_1));

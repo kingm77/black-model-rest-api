@@ -53,7 +53,7 @@ void BlackScholesHandler::handle(const web::http::http_request &req, const std::
 										params[str::params::INTEREST_RATE], params[str::params::VOLATILITY], params[str::params::TIME_TO_MATURITY]);
 
 		
-		jsonResponse[utility::conversions::to_string_t("result")][utility::conversions::to_string_t("price")] = web::json::value::string(utility::conversions::to_string_t(std::to_string(price)));
+		jsonResponse[utility::conversions::to_string_t("result")][utility::conversions::to_string_t("price")] = web::json::value::string(utility::conversions::to_utf16string(std::to_string(price)));
 		responseStatus = web::http:: status_codes::OK;
 	}
 

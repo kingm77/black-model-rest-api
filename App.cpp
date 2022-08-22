@@ -33,7 +33,8 @@ void app::StartServer(const utility::string_t& address)
 	/////////////////////////////////
 	// Create an Instance of the Server and Invoke Wait to 
 	// start the Server...
-	g_http = std::unique_ptr<PricingServer>(new PricingServer(addr, GenerateApiRoutes()));
+	auto timeout = utility::seconds(30);
+	g_http = std::unique_ptr<PricingServer>(new PricingServer(addr, GenerateApiRoutes(), timeout));
 	g_http->Open().wait();
 	//---- Indicate the start and spit URI to the Console
 	ucout << utility::string_t(U("Listening for requests at: ")) << addr << std::endl;

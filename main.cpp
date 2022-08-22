@@ -8,9 +8,9 @@
 
 #include "strConstant.h"
 
-int main(int argc, char* argv[])
+int main()
 {
-	auto port = utility::conversions::to_string_t(argv[1]);
+	auto port = utility::conversions::to_string_t(str::app::PORT);
 
 	//--- Create the Server URI base address
 	auto address = utility::conversions::to_string_t(str::app::BASE_URL);
@@ -20,9 +20,9 @@ int main(int argc, char* argv[])
 	app::StartServer(address);
 	std::cout << "Press ENTER to exit." << std::endl;
 
-	/*//--- Wait Indefenintely, Untill some one has 
+	//--- Wait Indefenintely, Untill some one has 
 	// pressed a key....and Shut the Server down
 	std::string line;
 	std::getline(std::cin, line);
-	app::ShutDown();*/
+	app::ShutDown();
 }

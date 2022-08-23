@@ -12,14 +12,15 @@ int main(int argc, char* argv[])
 {
 	auto port = utility::conversions::to_string_t(argv[1]);
 
-
-	
 	app::StartServer(port);
-	std::cout << "Press ENTER to exit." << std::endl;
+	std::cout << "Press ENTER q or Q to exit." << std::endl;
 
 	//--- Wait Indefenintely, Untill some one has 
 	// pressed a key....and Shut the Server down
 	std::string line;
-	std::getline(std::cin, line);
+	
+	while (line != "Q" || line !="q") {
+		std::getline(std::cin, line);
+	}
 	app::ShutDown();
 }

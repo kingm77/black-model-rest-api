@@ -8,7 +8,7 @@
 class PricingServer
 {
 public:
-	PricingServer(utility::string_t url, Router rtr, utility::seconds timeout);
+	PricingServer(utility::string_t url, Router rtr, web::http::experimental::listener::http_listener_config config);
 	~PricingServer() {}
 	pplx::task<void> Open() { return m_listener.open(); }
 	pplx::task<void> Close() { return m_listener.close(); }

@@ -22,19 +22,25 @@ std::unique_ptr<PricingServer> g_http;
 //////////////////////////////////////////////////
 // STart the Server with the Given URL
 //
-void app::StartServer(const utility::string_t& address)
+void app::StartServer(const utility::string_t& port)
 {
 	// Build our listener's URI from the address given
 	// We just append VanillaPricer/ to the base URL
-	web::uri_builder uri(address);
-	uri.append_path(utility::conversions::to_string_t(str::route::BASE_ROUTE));
+	web::uri_builder uri;
+	uri.set_scheme(utility::conversions::to_string_t(str::app::PROTOCOL));
+	uri.set_host(utility::conversions::to_string_t(str::app::HOST));
+	uri.set_port(port);
+	uri.set_path(utility::conversions::to_string_t(str::route::BASE_ROUTE));
+
 	ucout << uri.to_uri().to_string() << std::endl;
 	auto addr = uri.to_uri().to_string();
 	/////////////////////////////////
 	// Create an Instance of the Server and Invoke Wait to 
 	// start the Server...
-	auto timeout = utility::seconds(30);
-	g_http = std::unique_ptr<PricingServer>(new PricingServer(addr, GenerateApiRoutes(), timeout));
+	auto serverConfig = web::http::experimental::listener::http_listener_config();
+	serverConfig.set_timeout(utility::seconds(30));
+	
+	g_http = std::unique_ptr<PricingServer>(new PricingServer(addr, GenerateApiRoutes(), serverConfig));
 	g_http->Open().wait();
 	//---- Indicate the start and spit URI to the Console
 	ucout << utility::string_t(U("Listening for requests at: ")) << addr << std::endl;

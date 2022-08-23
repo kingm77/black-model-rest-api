@@ -8,16 +8,13 @@
 
 #include "strConstant.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-	auto port = utility::conversions::to_string_t(str::app::PORT);
+	auto port = utility::conversions::to_string_t(argv[1]);
 
-	//--- Create the Server URI base address
-	auto address = utility::conversions::to_string_t(str::app::BASE_URL);
 
-	address.append(port);
 	
-	app::StartServer(address);
+	app::StartServer(port);
 	std::cout << "Press ENTER to exit." << std::endl;
 
 	//--- Wait Indefenintely, Untill some one has 

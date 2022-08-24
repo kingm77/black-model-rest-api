@@ -10,7 +10,11 @@
 
 int main(int argc, char* argv[])
 {
-	auto port = utility::conversions::to_string_t(argv[1]);
+	utility::string_t port;
+	if(argc == 2)
+		port = utility::conversions::to_string_t(argv[1]);
+	else
+		port =  utility::conversions::to_string_t(str::app::PORT);
 
 	app::StartServer(port);
 	std::cout << "Press ENTER q or Q to exit." << std::endl;

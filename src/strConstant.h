@@ -26,7 +26,7 @@ namespace str {
 	namespace app {
 		const static std::string PROTOCOL = "http";
 		const static std::string HOST = "0.0.0.0";
-		const static std::string HOST = "34566";
+		const static std::string PORT = "34566";
 	}
 }
 
